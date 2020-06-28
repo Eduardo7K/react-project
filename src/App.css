@@ -1,0 +1,70 @@
+.App {
+  text-align: center;
+  background-color: rgb(34, 31, 31);
+}
+
+
+
+.loginInput {
+  background-color: #545463;
+  color: blue;  
+}
+
+.loginButton {
+  margin-top: 30px;
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #715e5e 5%, #0c2525 100%);
+	background-color:#715e5e;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 55px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #715e5e;
+}
+.loginButton:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #715e5e 100%);
+	background-color:#6c7c7c;
+}
+.loginButton:active {
+	position:relative;
+	top:1px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-fields {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.App-form {
+  display: grid;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
