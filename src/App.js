@@ -1,19 +1,36 @@
 import React from "react";
 import "./App.css";
-import {  Container, FormLabel, Input  } from "@material-ui/core";
-import { createHashHistory } from 'history'
+import { Container, Input } from "@material-ui/core";
+import { createHashHistory } from "history";
 
-export const history = createHashHistory()
+export const history = createHashHistory();
 
 function App() {
-
   
+  async function submitForm(formData) {
+    const url = "http://localhost:3003/api/users/login";
 
+    const form = formData.target;
 
+    let user = {
+      email: form.login,
+      password: form.password,
+    };
 
-  function submitForm() {
-    
-    history.push("/Dashboard");
+    console.log(user);
+
+    /*const data = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    if (data) {
+    window.location.href = "dashboard.js";}
+    else {alert("Login ou senha incorretos")}*/
   }
 
   return (
@@ -22,17 +39,22 @@ function App() {
         <header className="App-header">
           <h1>Login</h1>
 
-          <FormLabel className="App-form">
-            <span className="App-fields" >Usuário</span>
-            <Input className={`App-fields loginInput`} type="text"  color="secondary"></Input>
+          <form className="App-form" onSubmit={submitForm}>
+            <span className="App-fields">Usuário</span>
+            <Input
+              className={`App-fields loginInput`}
+              type="text"
+              color="secondary"
+            ></Input>
 
             <span className="App-fields">Senha</span>
 
-            <Input className={`App-fields loginInput`}  type="password"  ></Input>
+            <Input className={`App-fields loginInput`} type="password" ></Input>
 
-          <button onClick={submitForm} className="loginButton">Login</button>
-
-          </FormLabel>
+            <button className="loginButton">
+              Login
+            </button>
+          </form>
         </header>
       </Container>
     </div>

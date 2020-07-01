@@ -54,6 +54,7 @@
 
 .App-form {
   display: grid;
+  font-size: 20px;
 }
 
 .App-link {
