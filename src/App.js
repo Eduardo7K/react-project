@@ -15,8 +15,8 @@ function App() {
       password: "",
     },
 
-    onSubmit: (values) => {
-      fetch(url, {
+    onSubmit: async (values) => {
+      const data = fetch(url, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -24,7 +24,17 @@ function App() {
         },
         body: JSON.stringify(formik),
       });
+      console.log("data = ")
+      console.log(data);
+      const response = await data.json();
+      if (response) {
+        alert("login com sucesso!")
+      } else {
+        alert("falha login")
+      }
     },
+
+    
   });
 
   return (
