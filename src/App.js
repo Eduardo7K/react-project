@@ -1,77 +1,44 @@
-import React from "react";
-import "./App.css";
-import { Container, Input } from "@material-ui/core";
-import { createHashHistory } from "history";
-import { useFormik } from "formik";
+import React, { Component } from 'react';
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import './pages/App.css';
+import {Menubar} from 'primereact/menubar';
+import {withRouter} from 'react-router-dom';
 
-export const history = createHashHistory();
-
-function App() {
-  const url = "http://localhost:3003/api/users/login";
-
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      password: "",
-    },
-
-    onSubmit: async (values) => {
-      const data = fetch(url, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formik),
-      });
-      console.log("data = ")
-      console.log(data);
-      const response = await data.json();
-      if (response) {
-        alert("login com sucesso!")
-      } else {
-        alert("falha login")
+class App extends Component {
+  render() {
+    const menuitems = [
+      {
+         label:'Home',
+         icon:'pi pi-fw pi-home',
+         command:() => this.props.history.push('/')
+      },
+      {
+         label:'Dashboard',
+         icon:'pi pi-fw pi-user',
+         command:() => this.props.history.push('/dashboard')
+      },
+      {
+         label:'Contato',
+         icon:'pi pi-fw pi-comment',
+         command:() => this.props.history.push('/contato')
       }
-    },
+   ];
+    return (
+      <div className="App">
+        <Menubar model={menuitems}/>
 
-    
-  });
-
-  return (
-    <div className="App">
-      <Container maxWidth="sm" className="App-container">
-        <header className="App-header">
-          <h1>Login</h1>
-
-          <form className="App-form" onSubmit={formik.handleSubmit}>
-            <span className="App-fields">Usuário</span>
-            <input
-              name="username"
-              id="username"
-              className={`App-fields loginInput`}
-              type="text"
-              color="secondary"
-              onChange={formik.handleChange}
-              value={formik.values.username}
-            ></input>
-
-            <span className="App-fields">Senha</span>
-
-            <input
-              name="password"
-              id="password"
-              className={`App-fields loginInput`}
-              type="password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            ></input>
-
-            <input type="submit" className="loginButton" value="Login" />
-          </form>
-        </header>
-      </Container>
-    </div>
-  );
+        <div id="main">
+            <main>
+                <div className="content" id="content">
+                    {this.props.children}
+                </div>
+            </main>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default withRouter(App);
